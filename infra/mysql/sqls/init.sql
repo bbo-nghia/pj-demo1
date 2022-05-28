@@ -1,3 +1,3 @@
-create database `freefon`;
-use `freefon`;
+create database `pj-demo1`;
+use `pj-demo1`;
 
