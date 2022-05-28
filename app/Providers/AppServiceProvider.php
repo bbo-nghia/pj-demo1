@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Routing\UrlGenerator;
 
 /**
  * Class AppServiceProvider.
@@ -26,12 +27,16 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(UrlGenerator $url)
     {
         DB::connection()
             ->getDoctrineSchemaManager()
             ->getDatabasePlatform()
             ->registerDoctrineTypeMapping('enum', 'string');
+
+        if (config('app.env') === 'prod') {
+            $url->forceScheme('https');
+        }
 
         Paginator::useBootstrap();
     }
