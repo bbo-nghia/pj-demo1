@@ -7,7 +7,7 @@ services:
   web:
     build: ./infra/web
     ports:
-      - "8888:80"
+      - "80:80"
     volumes:
       - ./:/var/www
     links:
