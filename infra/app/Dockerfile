@@ -12,7 +12,7 @@ RUN apt-get update && apt-get -y upgrade && apt-get install -y \
     && docker-php-ext-install pdo_mysql \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug \
-    && docker-php-ext-configure gd \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd zip && \
 
     # zip, unzip

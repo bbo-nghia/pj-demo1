@@ -3,21 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Sanctum\HasApiTokens;
 
 /**
  * @property integer $id
- * @property string $name
- * @property string $mobile
- * @property string $birthday
- * @property boolean $mail_flag
+ * @property integer $account_id
+ * @property string $original_file_name
+ * @property string $main_file_name
+ * @property string $thumb_file_name
  * @property string $created_at
  * @property string $updated_at
  */
-class Account extends Model
+class AccountPicture extends Model
 {
-    use HasApiTokens;
-
     /**
      * The "type" of the auto-incrementing ID.
      * 
@@ -28,5 +25,5 @@ class Account extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'mobile', 'birthday', 'mail_flag', 'created_at', 'updated_at'];
+    protected $fillable = ['account_id', 'original_file_name', 'main_file_name', 'thumb_file_name', 'created_at', 'updated_at'];
 }

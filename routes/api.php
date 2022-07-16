@@ -13,6 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
+Route::group(['as' => 'api.'], function () {
+    includeRouteFiles(__DIR__ . '/api/');
+});
