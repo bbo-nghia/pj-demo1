@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Exceptions\GeneralException;
 use App\Models\AccountPicture;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -53,7 +52,7 @@ class PictureService extends BaseService
         } catch (Exception $e) {
             DB::rollBack();
 
-            throw new GeneralException(__('There was a problem creating your picture. ' . $e->getMessage()));
+            throw new Exception(__('There was a problem creating your picture. ' . $e->getMessage()));
         }
 
         DB::commit();
@@ -68,7 +67,7 @@ class PictureService extends BaseService
      */
     public function getAll($accountId)
     {
-        return $this->model->where('account_id', $accountIdxx)->get();
+        return $this->model->where('account_id', $accountId)->get();
     }
 
     /**

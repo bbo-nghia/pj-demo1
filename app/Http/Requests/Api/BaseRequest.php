@@ -43,11 +43,9 @@ class BaseRequest extends FormRequest
         throw new HttpResponseException(
             response()->json(
                 [
-                    'meta' => [
-                        'message' => 'Invalid params',
-                        'code'    => Response::HTTP_FORBIDDEN,
-                        'errors'  => $errorMessages
-                    ]
+                    'message' => 'Invalid params',
+                    'code'    => Response::HTTP_FORBIDDEN,
+                    'errors'  => $errorMessages
                 ],
                 Response::HTTP_FORBIDDEN
             )
@@ -61,10 +59,8 @@ class BaseRequest extends FormRequest
     {
         return response()->json(
             [
-                'meta' => [
-                    'message' => 'Unauthenticated.',
-                    'code'    => Response::HTTP_UNAUTHORIZED,
-                ]
+                'message' => 'Unauthenticated.',
+                'code'    => Response::HTTP_UNAUTHORIZED,
             ],
             Response::HTTP_UNAUTHORIZED
         );

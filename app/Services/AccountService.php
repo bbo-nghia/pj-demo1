@@ -3,7 +3,8 @@
 namespace App\Services;
 
 use App\Models\Account;
-use Carbon\Carbon;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class AccountService
@@ -38,5 +39,40 @@ class AccountService extends BaseService
     public function createAccessToken(Account $account)
     {
         return $account->createToken('Personal Access Token');
+    }
+
+    /**
+     * @param mixed $accountId
+     * @param mixed $data
+     * 
+     * @return Account
+     */
+    public function update($accountId, $data)
+    {
+        $account = $this->findById($accountId);
+
+        DB::beginTransaction();
+        try {
+            if (!empty($data['name'])) {
+                $account->name = $data['name'];
+            }
+            if (!empty($data['mobile'])) {
+                $account->mobile = $data['mobile'];
+            }
+            if (!empty($data['birthday'])) {
+                $account->birthday = $data['birthday'];
+            }
+            if (!empty($data['mail_flag'])) {
+                $account->mail_flag = $data['mail_flag'];
+            }
+            $account->save();
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            throw new Exception(__('There was a problem updating account. ' . $e->getMessage()));
+        }
+
+        DB::commit();
+        return $account;
     }
 }

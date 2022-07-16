@@ -64,13 +64,11 @@ class ApiBaseController extends Controller
     {
         return response()->json(
             [
-                'meta' => [
-                    'message' => 'Invalid params',
-                    'code'    => Response::HTTP_FORBIDDEN,
-                    'errors'  => [
-                        'field_target' => $fieldTarget,
-                        'message'      => $message
-                    ]
+                'message' => 'Invalid params',
+                'code'    => Response::HTTP_FORBIDDEN,
+                'errors'  => [
+                    'field_target' => $fieldTarget,
+                    'message'      => $message
                 ]
             ],
             Response::HTTP_FORBIDDEN
